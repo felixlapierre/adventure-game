@@ -1,0 +1,33 @@
+﻿  Microsoft (R) C/C++ Optimizing Compiler Version 19.12.25835 for x86
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  cl /c /I"C:\Users\felix\Desktop\Projects\C++ Game\Project1\Project1\/include" /ZI /W3 /WX- /diagnostics:classic /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /permissive- /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:prompt Editor.cpp Game.cpp Main.cpp MainMenu.cpp
+  
+  MainMenu.cpp
+  Game.cpp
+  Editor.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Main.cpp
+  Microsoft (R) Incremental Linker Version 14.12.25835.0
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  
+  "/OUT:C:\Users\felix\Desktop\Projects\C++ Game\Project1\Debug\Project1.exe" /INCREMENTAL "/LIBPATH:C:\Users\felix\Desktop\Projects\C++ Game\Project1\Project1\/lib" "sfml-network-d.lib" "sfml-audio-d.lib" "sfml-graphics-d.lib" "sfml-window-d.lib" "sfml-system-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST "/MANIFESTUAC:level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG:FASTLINK "/PDB:C:\Users\felix\Desktop\Projects\C++ Game\Project1\Debug\Project1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT "/IMPLIB:C:\Users\felix\Desktop\Projects\C++ Game\Project1\Debug\Project1.lib" /MACHINE:X86 Debug\AnimatedObject.obj 
+  Debug\BlockFactory.obj 
+  Debug\Creature.obj 
+  Debug\Editor.obj 
+  Debug\Enemy.obj 
+  Debug\Game.obj 
+  Debug\GameObject.obj 
+  Debug\Skeleton.obj 
+  Debug\Weapon.obj 
+  Debug\Main.obj 
+  Debug\MainMenu.obj 
+  Debug\MovingObject.obj 
+  Debug\Overworld.obj 
+  Debug\Player.obj 
+  Debug\SplashScreen.obj 
+  Debug\Sword.obj 
+  Debug\util.obj 
+  Debug\VisibleGameObject.obj 
+  Project1.vcxproj -> C:\Users\felix\Desktop\Projects\C++ Game\Project1\Debug\Project1.exe
