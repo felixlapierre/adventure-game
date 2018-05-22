@@ -2,8 +2,8 @@
 #include "stdafx.h"
 #include "Weapon.h"
 
-Weapon::Weapon(int frameWidth, int frameHeight) : MovingObject(frameWidth, frameHeight) {
-
+Weapon::Weapon(int frameWidth, int frameHeight, Creature * user) : MovingObject(frameWidth, frameHeight) {
+	this->user = user;
 }
 
 Weapon::~Weapon() {
@@ -11,7 +11,7 @@ Weapon::~Weapon() {
 }
 
 
-void Weapon::Update(float elapsedTime, bool inUse, Creature * c) {
+void Weapon::Update(float elapsedTime, bool inUse) {
 	MovingObject::Update(elapsedTime);
 }
 

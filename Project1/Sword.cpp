@@ -2,14 +2,14 @@
 #include "stdafx.h"
 #include "Sword.h"
 
-Sword::Sword() : Weapon(56, 66) {
+Sword::Sword(Creature * user) : Weapon(56, 66, user) {
 	if (_texture->getSize().x == 0) //If texture is unloaded
 		_texture->loadFromFile("images/Slash.png");
 	Load(_texture);
 }
 
-void Sword::Update(float elapsedTime, bool inUse, Creature * c) {
-	sf::Vector2f ownerLocation = c->GetCenter();
+void Sword::Update(float elapsedTime, bool inUse) {
+	sf::Vector2f ownerLocation = user->GetCenter();
 	_origin = ownerLocation;
 	if (inUse && _states.size() == 0) {
 		addState(Cooldown, 0.15f);
@@ -32,7 +32,7 @@ void Sword::Update(float elapsedTime, bool inUse, Creature * c) {
 
 	SetCenter(ownerLocation);
 
-	Weapon::Update(elapsedTime, inUse, c);
+	Weapon::Update(elapsedTime, inUse);
 }
 
 void Sword::Rotate(float angle)

@@ -12,6 +12,8 @@ The GameLoop function makes all of these elements move and interact
 class Overworld
 {
 public:
+	~Overworld();
+
 	enum OverworldResult {
 		ExitGame,
 		MainMenu
@@ -21,6 +23,7 @@ public:
 private:
 	OverworldResult GameLoop(sf::RenderWindow& window);
 	void Draw(sf::RenderWindow& window);
+	void UpdateOffset(sf::RenderWindow& window);
 
 	sf::Clock _timer;
 	float _elapsedTimeSeconds;
@@ -34,7 +37,11 @@ private:
 
 	GameState _state;
 	Player *  _player;
+
+	sf::Vector2f _offset;
+
 	std::vector<GameObject> _obstacles;
 	std::vector<VisibleGameObject> _visibles;
 	std::vector<Enemy *> _enemies;
+	
 };

@@ -1,7 +1,8 @@
 #pragma once
 #include "Creature.h"
+#include "Flail.h"
 #include <memory>
-class Weapon;
+class Flail;
 class Player : 
 	public Creature
 {
@@ -12,11 +13,13 @@ public:
 	virtual void Attack(Creature * c);
 	void setDesiredVelocity(sf::Vector2f desiredVelocity);
 	void Rotate();
-	void setWeapon1(Weapon * item);
+	void setWeapon(Flail * item);
+	Flail * getWeapon() { return _flail; }
 	void Draw(sf::RenderWindow& window);
 	bool keysPressed [4];
 private:
 	sf::RenderWindow * _window;
 	const float _speed = 350.0f;
-	std::unique_ptr<Weapon> _weapon1;
+
+	Flail * _flail;
 };

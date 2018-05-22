@@ -4,8 +4,8 @@
 
 class Sword : public Weapon {
 public:
-	Sword();
-	virtual void Update(float elapsedTime, bool inUse, Creature * c);
+	Sword(Creature * user);
+	virtual void Update(float elapsedTime, bool inUse);
 	virtual void Rotate(float angle);
 	virtual void CheckForHit(Creature * c);
 	virtual float GetDamage();

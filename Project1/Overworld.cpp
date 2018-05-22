@@ -10,9 +10,19 @@
 #include <fstream>
 #include <vector>
 
+Overworld::~Overworld()
+{
+	delete _player;
+}
+
 Overworld::OverworldResult Overworld::Show(sf::RenderWindow& window) {
 	//Set state to playing
 	_state = Playing;
+
+	//Set up the offset and pointer so visible game objects
+	//know where to draw themselves
+	_offset = sf::Vector2f(0, 0);
+	VisibleGameObject::SetOffsetPointer(&_offset);
 
 	//Create player
 	_player = new Player(&window);
@@ -20,7 +30,7 @@ Overworld::OverworldResult Overworld::Show(sf::RenderWindow& window) {
 	(*_player).SetCenter((float)window.getSize().x / 2, (float)window.getSize().y / 2);
 	
 	//Modified to use flail
-	_player->setWeapon1(new Flail());
+	_player->setWeapon(new Flail(_player));
 
 	//Load map from file
 	util::loadMapData("maps/map.txt", _obstacles, _visibles);
@@ -29,6 +39,7 @@ Overworld::OverworldResult Overworld::Show(sf::RenderWindow& window) {
 	_enemies.push_back(new Skeleton());
 	_enemies.at(0)->SetCenter(100, 100);
 
+	UpdateOffset(window);
 	return GameLoop(window);
 }
 
@@ -43,6 +54,8 @@ Overworld::OverworldResult Overworld::GameLoop(sf::RenderWindow& window)
 		_elapsedTimeSeconds = (float)_timer.getElapsedTime().asMicroseconds() / 1E+6f;
 		_timer.restart();
 
+		//DEBUG: Print offset
+		//std::cout << _offset.x << " " << _offset.y << std::endl;
 
 		while (window.pollEvent(event))
 		{
@@ -73,6 +86,8 @@ Overworld::OverworldResult Overworld::GameLoop(sf::RenderWindow& window)
 
 		for (unsigned int i = 0; i < _obstacles.size(); i++) {
 			(*_player).collide(_obstacles.at(i));
+			//Flail collision
+			_player->getWeapon()->collide(_obstacles.at(i));
 			for (unsigned int j = 0; j < _enemies.size(); j++) {
 				_enemies.at(j)->collide(_obstacles.at(i));
 			}
@@ -83,6 +98,8 @@ Overworld::OverworldResult Overworld::GameLoop(sf::RenderWindow& window)
 			_player->Attack(_enemies.at(i));
 			_enemies.at(i)->Attack(_player);
 		}
+
+		UpdateOffset(window);
 		Draw(window);
 	}
 	if (_state == Exiting)
@@ -107,4 +124,10 @@ void Overworld::Draw(sf::RenderWindow& window)
 	//window.draw(testRect);
 
 	window.display();
+}
+
+void Overworld::UpdateOffset(sf::RenderWindow& window)
+{
+	_offset.x = (float)window.getSize().x / 2 - _player->GetCenter().x;
+	_offset.y = (float)window.getSize().y / 2 - _player->GetCenter().y;
 }

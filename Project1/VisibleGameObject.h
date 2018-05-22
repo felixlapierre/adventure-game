@@ -8,6 +8,8 @@ public:
 	VisibleGameObject(int frameWidth, int frameHeight);
 	virtual ~VisibleGameObject();
 
+	static void SetOffsetPointer(sf::Vector2f * offset);
+
 	virtual void Load(std::string filename);
 	virtual void Load(sf::Texture * texture);
 	virtual void Draw(sf::RenderWindow& window);
@@ -27,13 +29,17 @@ public:
 
 	virtual void SetCenter(float x, float y);
 	virtual void SetCenter(sf::Vector2f loc);
-	sf::Vector2f GetCenter() { return _sprite.getPosition(); };
+	sf::Vector2f GetCenter();
 	
 	virtual void SetRotation(float angle);
 	virtual void Flip();
 	void SetTextureRect(sf::IntRect rect) { _sprite.setTextureRect(rect); }
 	bool _visible;
+protected:
+	static sf::Vector2f * _offset;
 private:
+	sf::Vector2f _location;
+	
 	sf::Sprite _sprite;
 	sf::Texture * _texture;
 	std::string _fileName;

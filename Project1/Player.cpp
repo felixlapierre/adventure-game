@@ -11,18 +11,18 @@ Player::Player(sf::RenderWindow* window) : Creature(50, 50, 100.0f) {
 
 Player::~Player()
 {
-
+	delete _flail;
 }
 
 void Player::Update(float elapsedTime)
 {
-	_weapon1->Update(elapsedTime, keysPressed[0], this);
+	_flail->Update(elapsedTime, keysPressed[0]);
 	Creature::Update(elapsedTime);
 }
 
 void Player::Attack(Creature * c)
 {
-	_weapon1->CheckForHit(c);
+	_flail->CheckForHit(c);
 }
 
 void Player::setDesiredVelocity(sf::Vector2f desiredVelocity)
@@ -46,16 +46,24 @@ void Player::Rotate()
 	float angle = util::toDeg(atan2f(direction.y, direction.x)) + 270;
 	if (direction.x != 0 || direction.y != 0)
 		SetRotation(angle);
-	_weapon1->Rotate(angle);
+	//Removed rotation of weapon since flail does not need to rotate
 }
 
 
-void Player::setWeapon1(Weapon * item) {
-	_weapon1.reset(item);
+void Player::setWeapon(Flail * item) {
+	_flail = item;
 }
 
 void Player::Draw(sf::RenderWindow & window)
 {
-	AnimatedObject::Draw(window);
-	_weapon1->Draw(window);
+	(*_flail).DrawChain(window);
+	_flail->DrawChain(window);
+	if (_flail->IsPulled()) {
+		AnimatedObject::Draw(window);
+		_flail->Draw(window);
+	}
+	else {
+		_flail->Draw(window);
+		AnimatedObject::Draw(window);
+	}
 }

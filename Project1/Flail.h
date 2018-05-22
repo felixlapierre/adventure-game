@@ -4,15 +4,18 @@
 
 class Flail : public Weapon {
 public:
-	Flail();
-	virtual void Update(float elapsedTime, bool inUse, Creature * c);
+	Flail(Creature * user);
+	virtual void Update(float elapsedTime, bool inUse);
 	
 	virtual void CheckForHit(Creature * c);
 	virtual float GetDamage();
 	virtual float GetKnockback();
 	virtual sf::Vector2f GetAttackOrigin();
 	virtual void Rotate(float angle);
+	void collide(GameObject obstacle);
 
+	void DrawChain(sf::RenderWindow& window);
+	bool IsPulled();
 private:
 
 	enum state_type {
@@ -29,9 +32,9 @@ private:
 	void addState(state_type type, float lasts);
 	std::vector<flail_state> _states;
 
-	const float _damage = 15;
-	const float _knockback = 1500;
-	const float _min_speed = 50;
-	const float _pull_duration = 0.5;
-	const float _chain_length = 200;
+	const float _damage = 15.0f;
+	const float _knockback = 1500.0f;
+	const float _min_speed = 50.0f;
+	const float _pull_duration = 0.3f;
+	const float _chain_length = 200.0f;
 };

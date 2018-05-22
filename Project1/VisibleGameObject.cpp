@@ -9,11 +9,17 @@ VisibleGameObject::VisibleGameObject(int frameWidth, int frameHeight)
 	_visible = false;
 	_frameWidth = frameWidth;
 	_frameHeight = frameHeight;
+	_location = sf::Vector2f();
 }
 
 VisibleGameObject::~VisibleGameObject()
 {
 
+}
+
+void VisibleGameObject::SetOffsetPointer(sf::Vector2f * offset)
+{
+	_offset = offset;
 }
 
 void VisibleGameObject::Load(std::string filename)
@@ -39,7 +45,7 @@ void VisibleGameObject::Load(sf::Texture * texture)
 	_texture = texture;
 	_sprite.setTexture((*_texture));
 	_sprite.setOrigin((float)_frameWidth / 2, (float)_frameHeight / 2);
-	SetCollisionBox(sf::FloatRect(0.0f, 0.0f, _frameWidth, _frameHeight));
+	SetCollisionBox(sf::FloatRect(0.0f, 0.0f, (float)_frameWidth, (float)_frameHeight));
 
 }
 
@@ -47,6 +53,7 @@ void VisibleGameObject::Draw(sf::RenderWindow& renderWindow)
 {
 	if (_isLoaded && _visible)
 	{
+		_sprite.setPosition(_location + (*_offset));
 		renderWindow.draw(_sprite);
 	}
 }
@@ -55,13 +62,19 @@ void VisibleGameObject::SetCenter(float x, float y)
 {
 	if (_isLoaded)
 	{
-		_sprite.setPosition(x, y);
+		_location.x = x;
+		_location.y = y;
 		SetCollisionBox(x - _frameWidth / 2, y - _frameHeight / 2);
 	}
 }
 
 void VisibleGameObject::SetCenter(sf::Vector2f loc) {
 	SetCenter(loc.x, loc.y);
+}
+
+sf::Vector2f VisibleGameObject::GetCenter()
+{
+	return _location;
 }
 
 void VisibleGameObject::SetRotation(float angle)
@@ -82,3 +95,5 @@ bool VisibleGameObject::Intersects(VisibleGameObject other)
 {
 	return GetRectangle().intersects(other.GetRectangle());
 }
+
+sf::Vector2f * VisibleGameObject::_offset;
