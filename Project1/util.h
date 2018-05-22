@@ -11,4 +11,6 @@ namespace util {
 	float toDeg(float angleAsRad);
 	sf::Vector2f normalize(sf::Vector2f input);
 	void loadMapData(std::string filename, std::vector<GameObject> & obstacles, std::vector<VisibleGameObject> & visibles );
+	float length(sf::Vector2f input);
+
 }

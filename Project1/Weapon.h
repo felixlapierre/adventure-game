@@ -1,12 +1,12 @@
 #pragma once
-#include "AnimatedObject.h"
+#include "MovingObject.h"
 
 class Creature;
-class Weapon : public AnimatedObject {
+class Weapon : public MovingObject {
 public:
 	Weapon(int frameWidth, int frameHeight);
 	virtual ~Weapon();
-	virtual void Update(float elapsedTime, bool inUse, sf::Vector2f ownerLocation);
+	virtual void Update(float elapsedTime, bool inUse, Creature * c);
 	virtual void Rotate(float angle) = 0;
 	virtual void CheckForHit(Creature * creature) = 0;
 	virtual void Draw(sf::RenderWindow& window);

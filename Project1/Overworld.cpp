@@ -2,6 +2,7 @@
 #include "stdafx.h"
 //#include "Player.h"
 #include "Sword.h"
+#include "Flail.h"
 #include "Skeleton.h"
 #include "BlockFactory.h"
 #include "Overworld.h"
@@ -17,7 +18,9 @@ Overworld::OverworldResult Overworld::Show(sf::RenderWindow& window) {
 	_player = new Player(&window);
 	(*_player).Load("images/PlayerSprite1.png");
 	(*_player).SetCenter((float)window.getSize().x / 2, (float)window.getSize().y / 2);
-	_player->setWeapon1(new Sword());
+	
+	//Modified to use flail
+	_player->setWeapon1(new Flail());
 
 	//Load map from file
 	util::loadMapData("maps/map.txt", _obstacles, _visibles);

@@ -60,6 +60,10 @@ void VisibleGameObject::SetCenter(float x, float y)
 	}
 }
 
+void VisibleGameObject::SetCenter(sf::Vector2f loc) {
+	SetCenter(loc.x, loc.y);
+}
+
 void VisibleGameObject::SetRotation(float angle)
 {
 	if (_isLoaded)

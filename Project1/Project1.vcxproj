@@ -149,6 +149,7 @@
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Editor.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Flail.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Skeleton.h" />
@@ -170,6 +171,7 @@
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Flail.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Skeleton.cpp" />

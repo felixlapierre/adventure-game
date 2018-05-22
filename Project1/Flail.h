@@ -2,31 +2,36 @@
 #include "Weapon.h"
 #include "Creature.h"
 
-class Sword : public Weapon {
+class Flail : public Weapon {
 public:
-	Sword();
+	Flail();
 	virtual void Update(float elapsedTime, bool inUse, Creature * c);
-	virtual void Rotate(float angle);
+	
 	virtual void CheckForHit(Creature * c);
 	virtual float GetDamage();
 	virtual float GetKnockback();
 	virtual sf::Vector2f GetAttackOrigin();
+	virtual void Rotate(float angle);
 
 private:
+
 	enum state_type {
-		Slashing,
-		Cooldown
+		Pulled,
+		Stopped
 	};
-	struct sword_state {
+	struct flail_state {
 		float lasts;
 		state_type type;
 	};
 
 	static sf::Texture * _texture;
 
-	const float _damage = 15;
-	const float _knockback = 1500.0f;
-	sf::Vector2f _origin;
 	void addState(state_type type, float lasts);
-	std::vector<sword_state> _states;
+	std::vector<flail_state> _states;
+
+	const float _damage = 15;
+	const float _knockback = 1500;
+	const float _min_speed = 50;
+	const float _pull_duration = 0.5;
+	const float _chain_length = 200;
 };

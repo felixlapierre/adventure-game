@@ -87,6 +87,9 @@
     <ClInclude Include="Editor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Flail.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="Editor.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flail.cpp">
+      <Filter>Source Files\Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

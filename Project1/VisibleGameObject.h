@@ -26,6 +26,7 @@ public:
 	bool Intersects(VisibleGameObject other);
 
 	virtual void SetCenter(float x, float y);
+	virtual void SetCenter(sf::Vector2f loc);
 	sf::Vector2f GetCenter() { return _sprite.getPosition(); };
 	
 	virtual void SetRotation(float angle);

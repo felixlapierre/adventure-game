@@ -30,6 +30,8 @@ namespace util {
 	{
 		return angleAsRad / 3.1415f * 180;
 	}
+
+	//TODO: Make this use util::length and check it still works
 	sf::Vector2f normalize(sf::Vector2f input) {
 		float magnitude = sqrtf(input.x * input.x + input.y * input.y);
 		input.x /= magnitude;
@@ -54,5 +56,9 @@ namespace util {
 			}
 			mapfile.close();
 		}
+	}
+	float length(sf::Vector2f input)
+	{
+		return sqrtf(input.x * input.x + input.y * input.y);
 	}
 }

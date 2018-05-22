@@ -8,7 +8,8 @@ Sword::Sword() : Weapon(56, 66) {
 	Load(_texture);
 }
 
-void Sword::Update(float elapsedTime, bool inUse, sf::Vector2f ownerLocation) {
+void Sword::Update(float elapsedTime, bool inUse, Creature * c) {
+	sf::Vector2f ownerLocation = c->GetCenter();
 	_origin = ownerLocation;
 	if (inUse && _states.size() == 0) {
 		addState(Cooldown, 0.15f);
@@ -29,9 +30,9 @@ void Sword::Update(float elapsedTime, bool inUse, sf::Vector2f ownerLocation) {
 		_visible = false;
 	}
 
-	SetCenter(ownerLocation.x, ownerLocation.y);
+	SetCenter(ownerLocation);
 
-	Weapon::Update(elapsedTime, inUse, ownerLocation);
+	Weapon::Update(elapsedTime, inUse, c);
 }
 
 void Sword::Rotate(float angle)

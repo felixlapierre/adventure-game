@@ -16,8 +16,7 @@ Player::~Player()
 
 void Player::Update(float elapsedTime)
 {
-
-	_weapon1->Update(elapsedTime, keysPressed[0], GetCenter());
+	_weapon1->Update(elapsedTime, keysPressed[0], this);
 	Creature::Update(elapsedTime);
 }
 

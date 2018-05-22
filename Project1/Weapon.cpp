@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "Weapon.h"
 
-Weapon::Weapon(int frameWidth, int frameHeight) : AnimatedObject(frameWidth, frameHeight) {
+Weapon::Weapon(int frameWidth, int frameHeight) : MovingObject(frameWidth, frameHeight) {
 
 }
 
@@ -11,11 +11,11 @@ Weapon::~Weapon() {
 }
 
 
-void Weapon::Update(float elapsedTime, bool inUse, sf::Vector2f ownerLocation) {
-	AnimatedObject::Update(elapsedTime);
+void Weapon::Update(float elapsedTime, bool inUse, Creature * c) {
+	MovingObject::Update(elapsedTime);
 }
 
 void Weapon::Draw(sf::RenderWindow & window)
 {
-	AnimatedObject::Draw(window);
+	MovingObject::Draw(window);
 }
