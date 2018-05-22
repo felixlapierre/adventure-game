@@ -36,6 +36,7 @@ MainMenu::MenuResult MainMenu::Show(sf::RenderWindow& window)
 
 	_menuItems.push_back(playButton);
 	_menuItems.push_back(exitButton);
+	_menuItems.push_back(editorButton);
 
 	window.clear(sf::Color::Green);
 	window.draw(sprite);

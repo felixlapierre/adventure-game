@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "MainMenu.h"
 #include "SplashScreen.h"
+#include "Editor.h"
 #include "Overworld.h"
 #include "Game.h"
 
@@ -50,7 +51,9 @@ void Game::GameLoop()
 			ShowOverworld();
 			break;
 		}
-		
+		case Game::LevelEditor:
+			ShowEditor();
+			break;
 		}
 	}
 }
@@ -69,7 +72,7 @@ void Game::ShowMenu()
 		_gameState = Game::Playing;
 		break;
 	case MainMenu::Editor:
-		_gameState = Game::Editor;
+		_gameState = Game::LevelEditor;
 	}
 }
 
@@ -82,11 +85,21 @@ void Game::ShowSplashScreen()
 
 void Game::ShowOverworld()
 {
-	int result = 0;
 	Overworld overworld;
-	result = overworld.Show(_mainWindow);
-	if (result == 0)
+	Overworld::OverworldResult result = overworld.Show(_mainWindow);
+	if (result == Overworld::OverworldResult::ExitGame)
 		_gameState = Exiting;
+	else
+		_gameState = ShowingMenu;
+}
+
+void Game::ShowEditor() {
+	Editor editor;
+	Editor::EditorResult result = editor.Show(_mainWindow);
+	if (result == Editor::EditorResult::ExitGame)
+		_gameState = Exiting;
+	else
+		_gameState = ShowingMenu;
 }
 
 Game::GameState Game::_gameState = Uninitialized;

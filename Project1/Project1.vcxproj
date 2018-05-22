@@ -185,6 +185,18 @@
     <ClCompile Include="util.cpp" />
     <ClCompile Include="VisibleGameObject.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\block1.png">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </Image>
+    <Image Include="images\dirt1.png" />
+    <Image Include="images\gravel1.png" />
+    <Image Include="images\MainMenu.png" />
+    <Image Include="images\PlayerSprite1.png" />
+    <Image Include="images\Skeleton.png" />
+    <Image Include="images\Slash.png" />
+    <Image Include="images\stone1.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

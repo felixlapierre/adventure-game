@@ -12,10 +12,11 @@ private:
 	static void ShowSplashScreen();
 	static void ShowMenu();
 	static void ShowOverworld();
+	static void ShowEditor();
 
 	enum GameState {
 		Uninitialized, ShowingSplash, Paused,
-		ShowingMenu, Playing, Exiting, Editor
+		ShowingMenu, Playing, Exiting, LevelEditor
 	};
 
 	static GameState _gameState;

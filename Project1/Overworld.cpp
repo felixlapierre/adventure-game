@@ -9,7 +9,7 @@
 #include <fstream>
 #include <vector>
 
-int Overworld::Show(sf::RenderWindow& window) {
+Overworld::OverworldResult Overworld::Show(sf::RenderWindow& window) {
 	//Set state to playing
 	_state = Playing;
 
@@ -20,32 +20,8 @@ int Overworld::Show(sf::RenderWindow& window) {
 	_player->setWeapon1(new Sword());
 
 	//Load map from file
-	std::ifstream mapfile("maps/map.txt");
-	std::string line;
-	if (mapfile.is_open()) {
-		int id, x, y, z, w, h, r;
-		while (!mapfile.eof()) {
-			mapfile >> id >> x >> y >> z >> w >> h >> r;
-			if (id < 100) {
-				_obstacles.push_back((BlockFactory::BuildObstacle(id, x, y, z, w, h, r)));
-			}
-			else {
-				_visibles.push_back(BlockFactory::BuildVisible(id, x, y, z, w, h, r));
-			}
+	util::loadMapData("maps/map.txt", _obstacles, _visibles);
 
-		}
-		mapfile.close();
-	}
-
-	//Create testing obstacles
-	_obstacles.push_back(GameObject(sf::FloatRect(0, 0, 50, 50)));
-
-	//Create testing visible textures
-	VisibleGameObject block(50, 50);
-	block.Load("images/block1.png");
-	block.SetCenter(50 / 2, 50 / 2);
-	_visibles.push_back(block);
-	
 	//Create enemies
 	_enemies.push_back(new Skeleton());
 	_enemies.at(0)->SetCenter(100, 100);
@@ -53,11 +29,10 @@ int Overworld::Show(sf::RenderWindow& window) {
 	return GameLoop(window);
 }
 
-int Overworld::GameLoop(sf::RenderWindow& window)
+Overworld::OverworldResult Overworld::GameLoop(sf::RenderWindow& window)
 {
 	sf::Event event;
 	_timer.restart();
-	
 
 	while (_state != GameOver && _state != Exiting) {
 		//Get the time elapsed since the last update.
@@ -107,7 +82,9 @@ int Overworld::GameLoop(sf::RenderWindow& window)
 		}
 		Draw(window);
 	}
-	return 0;
+	if (_state == Exiting)
+		return ExitGame;
+	return MainMenu;
 }
 
 void Overworld::Draw(sf::RenderWindow& window)

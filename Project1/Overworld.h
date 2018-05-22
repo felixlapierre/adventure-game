@@ -12,10 +12,14 @@ The GameLoop function makes all of these elements move and interact
 class Overworld
 {
 public:
-	int Show(sf::RenderWindow& window);
+	enum OverworldResult {
+		ExitGame,
+		MainMenu
+	};
+	OverworldResult Show(sf::RenderWindow& window);
 
 private:
-	int GameLoop(sf::RenderWindow& window);
+	OverworldResult GameLoop(sf::RenderWindow& window);
 	void Draw(sf::RenderWindow& window);
 
 	sf::Clock _timer;

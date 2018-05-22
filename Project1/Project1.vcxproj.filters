@@ -144,4 +144,30 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\block1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\dirt1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\gravel1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\MainMenu.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\PlayerSprite1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\Skeleton.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\Slash.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="images\stone1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

@@ -4,11 +4,14 @@ class Editor
 public:
 	Editor();
 	~Editor();
-
-	int Show(sf::RenderWindow& window);
+	enum EditorResult {
+		ExitGame,
+		MainMenu
+	};
+	EditorResult Show(sf::RenderWindow& window);
 
 private:
-	int EditorLoop(sf::RenderWindow& window);
+	EditorResult EditorLoop(sf::RenderWindow& window);
 	void Draw(sf::RenderWindow& window);
 
 	enum EditorState

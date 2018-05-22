@@ -1,5 +1,8 @@
 #pragma once
 #include "util.h"
+#include <fstream>
+#include <iostream>
+#include "BlockFactory.h"
 namespace util {
 	sf::FloatRect overlap(sf::FloatRect rect1, sf::FloatRect rect2) {
 		return sf::FloatRect(max(rect1.left, rect2.left), 
@@ -32,5 +35,24 @@ namespace util {
 		input.x /= magnitude;
 		input.y /= magnitude;
 		return input;
+	}
+	void loadMapData(std::string filename, std::vector<GameObject>& obstacles, std::vector<VisibleGameObject>& visibles)
+	{
+		//Create input file stream
+		std::ifstream mapfile(filename);
+		std::string line;
+		if (mapfile.is_open()) {
+			int id, x, y, z, w, h, r;
+			while (!mapfile.eof()) {
+				mapfile >> id >> x >> y >> z >> w >> h >> r;
+				if (id < 100) {
+					obstacles.push_back(BlockFactory::BuildObstacle(id, x, y, z, w, h, r));
+				}
+				else {
+					visibles.push_back(BlockFactory::BuildVisible(id, x, y, z, w, h, r));
+				}
+			}
+			mapfile.close();
+		}
 	}
 }
