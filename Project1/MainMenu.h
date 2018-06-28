@@ -3,29 +3,17 @@
 #include "Menu.h"
 #include "Overworld.h"
 #include "Editor.h"
+#include "MenuButton.h"
 
 class MainMenu : public Menu
 {
 public:
-	//TODO: Get rid of MenuItem and MenuResult in favor of Buttons
-	enum MenuResult { Nothing, Exit, Play, LevelEditor };
-
-	typedef void (MainMenu::* MenuMemberFn)(void);
-
-	struct MenuItem
-	{
-	public:
-		sf::Rect<int> rect;
-		MainMenu::MenuMemberFn action;
-	};
-
+	MainMenu();
 	Screen * Show(sf::RenderWindow& window);
 
-protected:
+private:
 	void HandleClick(int x, int y);
-	std::list<MenuItem> _menuItems;
-
-	void ExitGame();
-	void StartGame();
-	void StartLevelEditor();
+	MenuButton exitGameButton;
+	MenuButton startGameButton;
+	MenuButton levelEditorButton;
 };

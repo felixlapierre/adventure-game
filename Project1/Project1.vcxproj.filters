@@ -102,6 +102,9 @@
     <ClInclude Include="Editor.h">
       <Filter>Header Files\Screens</Filter>
     </ClInclude>
+    <ClInclude Include="MenuButton.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -162,6 +165,9 @@
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
     <ClCompile Include="Editor.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuButton.cpp">
       <Filter>Source Files\Screens</Filter>
     </ClCompile>
   </ItemGroup>
