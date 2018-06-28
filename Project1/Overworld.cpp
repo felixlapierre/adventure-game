@@ -15,7 +15,7 @@ Overworld::~Overworld()
 	delete _player;
 }
 
-Overworld::OverworldResult Overworld::Show(sf::RenderWindow& window) {
+Screen * Overworld::Show(sf::RenderWindow& window) {
 	//Set state to playing
 	_state = Playing;
 
@@ -40,7 +40,9 @@ Overworld::OverworldResult Overworld::Show(sf::RenderWindow& window) {
 	_enemies.at(0)->SetCenter(100, 100);
 
 	UpdateOffset(window);
-	return GameLoop(window);
+	GameLoop(window);
+
+	return nullptr; //For now, leaving the overworld will always close the game
 }
 
 Overworld::OverworldResult Overworld::GameLoop(sf::RenderWindow& window)

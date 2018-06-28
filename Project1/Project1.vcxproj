@@ -151,7 +151,9 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Flail.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Screen.h" />
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="MainMenu.h" />
@@ -174,9 +176,10 @@
     <ClCompile Include="Flail.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="Weapon.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ProgramEntryPoint.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="Overworld.cpp" />

@@ -1,4 +1,5 @@
 #pragma once
+#include "Screen.h"
 #include "Player.h"
 #include "VisibleGameObject.h"
 #include "Player.h"
@@ -9,7 +10,7 @@ An instance of the Overworld class contains the player and all elements of their
 The GameLoop function makes all of these elements move and interact
 */
 
-class Overworld
+class Overworld : public Screen
 {
 public:
 	~Overworld();
@@ -18,7 +19,7 @@ public:
 		ExitGame,
 		MainMenu
 	};
-	OverworldResult Show(sf::RenderWindow& window);
+	Screen * Show(sf::RenderWindow& window);
 
 private:
 	OverworldResult GameLoop(sf::RenderWindow& window);

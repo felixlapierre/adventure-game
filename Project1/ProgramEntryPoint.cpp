@@ -9,7 +9,8 @@ int main(int argc, char** argv)
 {
 	Game::Start();
 	return 0;
-	
+}
+/*
 	//The rest of the code will never run and i'm keeping it there just incase 
 	//I want to look at it again later
 
@@ -84,3 +85,4 @@ int main(int argc, char** argv)
 	}
 	return 0;
 }
+*/

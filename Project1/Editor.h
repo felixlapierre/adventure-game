@@ -1,5 +1,6 @@
 #pragma once
-class Editor
+#include "Screen.h"
+class Editor : public Screen
 {
 public:
 	Editor();
@@ -8,7 +9,7 @@ public:
 		ExitGame,
 		MainMenu
 	};
-	EditorResult Show(sf::RenderWindow& window);
+	Screen * Show(sf::RenderWindow& window);
 
 private:
 	EditorResult EditorLoop(sf::RenderWindow& window);

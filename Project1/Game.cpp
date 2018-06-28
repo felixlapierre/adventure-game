@@ -8,20 +8,28 @@
 
 void Game::Start(void)
 {
+	/* Old game code
 	if (_gameState != Uninitialized)
 		return;
-
-	_mainWindow.create(sf::VideoMode(WindowWidth, WindowHeight, 32), "RPG Game");
 	_gameState = Game::ShowingSplash;
+	*/
 
-	while (!IsExiting())
+	window.create(sf::VideoMode(WindowWidth, WindowHeight, 32), "RPG Game");
+
+	Screen * currentScreen = new SplashScreen();
+	Screen * nextScreen;
+
+	while (currentScreen != nullptr)
 	{
-		GameLoop();
+		nextScreen = currentScreen->Show(window);
+		delete currentScreen;
+		currentScreen = nextScreen;
 	}
 
-	_mainWindow.close();
+	window.close();
 }
 
+/* Old game code, not deleting yet just in case
 bool Game::IsExiting() {
 	if (_gameState == Game::Exiting)
 		return true;
@@ -32,7 +40,7 @@ bool Game::IsExiting() {
 void Game::GameLoop()
 {
 	sf::Event event;
-	while (_mainWindow.pollEvent(event))
+	while (window.pollEvent(event))
 	{
 		switch (_gameState)
 		{
@@ -61,7 +69,7 @@ void Game::GameLoop()
 void Game::ShowMenu()
 {
 	MainMenu mainMenu;
-	MainMenu::MenuResult result = mainMenu.Show(_mainWindow);
+	MainMenu::MenuResult result = mainMenu.Show(window);
 
 	switch (result)
 	{
@@ -71,7 +79,7 @@ void Game::ShowMenu()
 	case MainMenu::Play:
 		_gameState = Game::Playing;
 		break;
-	case MainMenu::Editor:
+	case MainMenu::LevelEditor:
 		_gameState = Game::LevelEditor;
 	}
 }
@@ -79,14 +87,14 @@ void Game::ShowMenu()
 void Game::ShowSplashScreen()
 {
 	SplashScreen splashScreen;
-	splashScreen.Show(_mainWindow);
+	splashScreen.Show(window);
 	_gameState = Game::ShowingMenu;
 }
 
 void Game::ShowOverworld()
 {
 	Overworld overworld;
-	Overworld::OverworldResult result = overworld.Show(_mainWindow);
+	Overworld::OverworldResult result = overworld.Show(window);
 	if (result == Overworld::OverworldResult::ExitGame)
 		_gameState = Exiting;
 	else
@@ -94,13 +102,14 @@ void Game::ShowOverworld()
 }
 
 void Game::ShowEditor() {
-	Editor editor;
-	Editor::EditorResult result = editor.Show(_mainWindow);
-	if (result == Editor::EditorResult::ExitGame)
+	LevelEditor editor;
+	LevelEditor::EditorResult result = editor.Show(window);
+	if (result == LevelEditor::EditorResult::ExitGame)
 		_gameState = Exiting;
 	else
 		_gameState = ShowingMenu;
 }
 
 Game::GameState Game::_gameState = Uninitialized;
-sf::RenderWindow Game::_mainWindow;
+*/
+sf::RenderWindow Game::window;

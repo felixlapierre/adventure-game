@@ -1,7 +1,11 @@
 #pragma once
+#include "Menu.h"
+#include "MainMenu.h"
 
-class SplashScreen
+class SplashScreen : public Menu
 {
 public:
-	void Show(sf::RenderWindow& window);
+	Screen * Show(sf::RenderWindow& window);
+protected:
+	void HandleClick(int x, int y);
 };

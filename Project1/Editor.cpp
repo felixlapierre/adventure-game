@@ -13,14 +13,15 @@ Editor::~Editor()
 	
 }
 
-Editor::EditorResult Editor::Show(sf::RenderWindow& window) {
+Screen * Editor::Show(sf::RenderWindow& window) {
 	//Set state to viewing
 	_state = Viewing;
 
 	//Load map from file
 	util::loadMapData("maps/map.txt", _obstacles, _visibles);
 
-	return EditorLoop(window);
+	EditorLoop(window);
+	return nullptr;
 }
 
 Editor::EditorResult Editor::EditorLoop(sf::RenderWindow& window) {

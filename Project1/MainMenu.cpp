@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "MainMenu.h"
 
-MainMenu::MenuResult MainMenu::Show(sf::RenderWindow& window)
+Screen * MainMenu::Show(sf::RenderWindow& window)
 {
 	//Load menu image from file
 	sf::Texture menuTexture;
@@ -17,7 +17,7 @@ MainMenu::MenuResult MainMenu::Show(sf::RenderWindow& window)
 	playButton.rect.height = 380 - 145;
 	playButton.rect.left = 0;
 	playButton.rect.width = 1023;
-	playButton.action = Play;
+	playButton.action = &MainMenu::StartGame;
 
 	//Exit menu item coordinates
 	MenuItem exitButton;
@@ -25,14 +25,14 @@ MainMenu::MenuResult MainMenu::Show(sf::RenderWindow& window)
 	exitButton.rect.width = 1023;
 	exitButton.rect.top = 383;
 	exitButton.rect.height = 560 - 383;
-	exitButton.action = Exit;
+	exitButton.action = &MainMenu::ExitGame;
 
 	MenuItem editorButton;
 	editorButton.rect.left = 0;
 	editorButton.rect.width = 1023;
 	editorButton.rect.top = 560;
 	editorButton.rect.height = 235;
-	editorButton.action = Editor;
+	editorButton.action = &MainMenu::StartLevelEditor;
 
 	_menuItems.push_back(playButton);
 	_menuItems.push_back(exitButton);
@@ -42,10 +42,10 @@ MainMenu::MenuResult MainMenu::Show(sf::RenderWindow& window)
 	window.draw(sprite);
 	window.display();
 
-	return GetMenuResponse(window);
+	return Menu::GetResponseLoop(window);
 }
 
-MainMenu::MenuResult MainMenu::HandleClick(int x, int y)
+void MainMenu::HandleClick(int x, int y)
 {
 	std::list<MenuItem>::iterator it;
 
@@ -57,27 +57,23 @@ MainMenu::MenuResult MainMenu::HandleClick(int x, int y)
 			&& menuItemRect.left < x
 			&& menuItemRect.left + menuItemRect.width > x)
 		{
-			return (*it).action;
+			//TODO: Make this less ugly cause what the heck
+			((*this).*((*it).action))(); //the devil
+			return;
 		}
 	}
 
-	return Nothing;
+	return;//Nothing;
 }
 
-MainMenu::MenuResult MainMenu::GetMenuResponse(sf::RenderWindow& window)
-{
-	sf::Event event;
+void MainMenu::StartGame() {
+	returned = new Overworld();
+}
 
-	while (true)
-	{
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::EventType::MouseButtonPressed)
-				return HandleClick(event.mouseButton.x, event.mouseButton.y);
-		}
-		if (event.type == sf::Event::EventType::MouseButtonPressed )
-		{
-			return Exit;
-		}
-	}
+void MainMenu::StartLevelEditor() {
+	returned = new Editor();
+}
+
+void MainMenu::ExitGame() {
+	returned = nullptr;
 }

@@ -25,6 +25,12 @@
     <Filter Include="Header Files\Creatures">
       <UniqueIdentifier>{1cd860d3-55ce-4ab6-ad48-9c667bc78e97}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Screens">
+      <UniqueIdentifier>{e71c4f4d-4ad5-4484-ab90-fe3f86526dea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens">
+      <UniqueIdentifier>{5f9776c5-abd7-4308-8de2-6e345aa76603}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -34,12 +40,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SplashScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Overworld.h">
@@ -84,24 +84,27 @@
     <ClInclude Include="BlockFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Editor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Flail.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="SplashScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SplashScreen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Overworld.cpp">
@@ -143,11 +146,23 @@
     <ClCompile Include="BlockFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Editor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Flail.cpp">
       <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramEntryPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SplashScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor.cpp">
+      <Filter>Source Files\Screens</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

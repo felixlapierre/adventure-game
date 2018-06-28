@@ -6,6 +6,9 @@ public:
 	static const int WindowWidth = 1024;
 	static const int WindowHeight = 768;
 private:
+	static sf::RenderWindow window;
+
+	/* Old game code
 	static bool IsExiting();
 	static void GameLoop();
 	
@@ -20,5 +23,5 @@ private:
 	};
 
 	static GameState _gameState;
-	static sf::RenderWindow _mainWindow;
+	*/
 };

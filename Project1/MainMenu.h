@@ -1,22 +1,31 @@
 #pragma once
 #include <list>
-class MainMenu
+#include "Menu.h"
+#include "Overworld.h"
+#include "Editor.h"
+
+class MainMenu : public Menu
 {
 public:
-	enum MenuResult { Nothing, Exit, Play, Editor };
-	
+	//TODO: Get rid of MenuItem and MenuResult in favor of Buttons
+	enum MenuResult { Nothing, Exit, Play, LevelEditor };
+
+	typedef void (MainMenu::* MenuMemberFn)(void);
+
 	struct MenuItem
 	{
 	public:
 		sf::Rect<int> rect;
-		MenuResult action;
+		MainMenu::MenuMemberFn action;
 	};
 
-	MenuResult Show(sf::RenderWindow& window);
+	Screen * Show(sf::RenderWindow& window);
 
-private:
-	MenuResult GetMenuResponse(sf::RenderWindow& window);
-	MenuResult HandleClick(int x, int y);
+protected:
+	void HandleClick(int x, int y);
 	std::list<MenuItem> _menuItems;
 
+	void ExitGame();
+	void StartGame();
+	void StartLevelEditor();
 };
